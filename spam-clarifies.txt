@@ -1,0 +1,53 @@
+Project Overview:
+The goal of this project is to build a machine learning model that can classify SMS messages as either Spam (unsolicited messages) or Ham (legitimate messages). We used the SMS Spam Collection Dataset, which contains over 5,000 messages labeled as either spam or ham. Our task is to predict the label based on the message content.
+
+Step 1: Data Exploration
+The first step in our project was to explore the dataset to understand its structure and the relationships between the variables.
+
+Data Structure: The dataset contains two columns:
+label: This is the target variable, indicating whether the message is "spam" or "ham."
+message: This column contains the raw SMS text.
+We examined the distribution of the labels, and found that:
+
+87% of the messages are labeled ham, and
+13% are labeled spam.
+Step 2: Data Preprocessing
+Before we could use the messages for model training, we needed to clean and preprocess the data.
+
+Handling Missing Values: We checked for missing data and found no significant issues.
+Text Preprocessing: We applied several preprocessing steps to clean the message text:
+Converted text to lowercase
+Removed stopwords (commonly used words that don't contribute to the message's meaning)
+Lemmatized the text (reduced words to their base form, e.g., "running" to "run")
+This ensures that we have consistent, useful text data for the model to learn from.
+
+Step 3: Text Vectorization
+Since machine learning models cannot directly process text, we converted the text data into numerical format using TF-IDF (Term Frequency-Inverse Document Frequency). This method helps us convert each message into a vector, where each element represents a word's importance in the document.
+
+We limited the number of features to the 3000 most important words (based on TF-IDF scores).
+Step 4: Model Building
+We then split the dataset into training and testing sets, using 70% for training and 30% for testing. The idea is to train the model on the training data and evaluate its performance on the testing data.
+
+We used Multinomial Naive Bayes as our machine learning model because it works well for text classification tasks. After training the model, we evaluated it using several metrics, such as:
+
+Accuracy Score: 97% accuracy on the test set.
+Confusion Matrix: To visualize the number of correctly and incorrectly classified messages.
+Classification Report: Detailed precision, recall, and F1-score for each class (spam and ham).
+Step 5: Model Evaluation and Visualization
+To better understand our model’s performance, we plotted:
+
+A confusion matrix to show how well the model is distinguishing between spam and ham messages.
+A ROC curve and calculated the AUC (Area Under the Curve) to evaluate the model's ability to discriminate between spam and ham.
+Step 6: Advanced Evaluation with Other Models
+We also experimented with other models to compare their performance:
+
+Logistic Regression
+Support Vector Machine (SVM)
+Random Forest
+By comparing the results, we concluded that Multinomial Naive Bayes gave the best results for this dataset.
+
+Step 7: Model Deployment (Optional)
+We packaged the trained model and vectorizer using Pickle, so it can be deployed in real-world applications. We also built a simple Streamlit web application where users can input an SMS message, and the model will predict whether it's spam or ham.
+
+Conclusion:
+This project helped us understand how text classification works and how machine learning models can be applied to real-world problems, such as SMS spam filtering. Through data preprocessing, model evaluation, and comparison, we developed a reliable model for SMS spam detection that can be integrated into messaging applications to filter out spam messages.
